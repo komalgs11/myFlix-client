@@ -14,20 +14,20 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 // Here is where we define all the props constraints for the MovieCard
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    _id: propTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     ImageURL: PropTypes.string.isRequired,
-    Genre: propTypes.shape({
+    Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Description: PropTypes.string.isRequired,
     }).isRequired,
-    Director: propTypes.shape({
+    Director: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Born: PropTypes.string.isRequired,
       Bio: PropTypes.string.isRequired,
     }).isRequired,
     Description: PropTypes.string.isRequired,
-    Featured: PropTypes.string.isRequired,
+    Featured: PropTypes.bool.isRequired,
   }).isRequired,
   onMovieClick: PropTypes.func.isRequired
 };
