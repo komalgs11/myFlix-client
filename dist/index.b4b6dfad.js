@@ -27419,7 +27419,7 @@ const MainView = ()=>{
                             onMovieClick: (newSelectedMovie)=>{
                                 setSelectedMovie(newSelectedMovie);
                             }
-                        }, movie._id, false, {
+                        }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 74,
                             columnNumber: 21
@@ -27438,7 +27438,7 @@ const MainView = ()=>{
                     children: "Logout"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 83,
+                    lineNumber: 82,
                     columnNumber: 17
                 }, undefined)
             ]
@@ -27525,20 +27525,13 @@ const MovieCard = ({ movie, onMovieClick })=>{
                         lineNumber: 9,
                         columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
-                        children: movie.Description
-                    }, void 0, false, {
-                        fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 10,
-                        columnNumber: 9
-                    }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         onClick: ()=>onMovieClick(movie),
                         variant: "link",
                         children: " show more "
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 11,
+                        lineNumber: 10,
                         columnNumber: 9
                     }, undefined)
                 ]
