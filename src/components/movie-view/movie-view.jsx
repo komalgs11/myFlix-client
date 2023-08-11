@@ -2,14 +2,14 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
 
-export const MovieView = ({ movie }) => {
+export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
-  const movie = movies.find((m) => m.id === movieId);
+  const movie = movies.find((m) => m._id === movieId);
 
   return (
     <div>
       <div>
-        <img src={movie.ImageURL} />
+        <img src={movie.ImageURL} alt={movie.Title} />
       </div>
       <div>
         <span>Title: </span>
