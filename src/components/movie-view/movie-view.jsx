@@ -4,20 +4,19 @@ import { Link } from "react-router-dom";
 import "./movie-view.scss";
 import { Card, Container, Button } from "react-bootstrap";
 
+
 export const MovieView = ({ movies, user, token, setUser }) => {
   const { movieId } = useParams();
-  const movie = movies.find((m) => m._id === movieId);
-  const [isFavourite, setIsFavourite] = useState(false);
+  const movie = movies.find((movie) => movie._id === movieId);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    console.log(user);
-    if (user.favouriteMovies && user.favouriteMovies.includes(movieId)) {
-      setIsFavourite(true);
-    }
+    const isFavorited = user.favoriteMovies.includes(movie._id)
+    setIsFavorite(isFavorited);
   }, []);
 
-  const addToFavourite = () => {
-    fetch(`https://mymoviesflix-415489b92353.herokuapp.com/users/${user.Username}/${movieId}`, {
+  const addToFavorite = () => {
+    fetch(`https://mymoviesflix-415489b92353.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,15 +28,14 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       }
     })
       .then((data) => {
-        setIsFavourite(true);
-        setUser(data);
+        setIsFavorite(true);
         localStorage.setItem("user", JSON.stringify(data));
-
+        setUser(data);
       });
-  }
+  };
 
-  const removeFavourite = () => {
-    fetch(`https://mymoviesflix-415489b92353.herokuapp.com/users/${user.Username}/${movieId}`, {
+  const removeFavorite = () => {
+    fetch(`https://mymoviesflix-415489b92353.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -49,17 +47,20 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       }
     })
       .then((data) => {
-        setIsFavourite(false);
+        setIsFavorite(false);
         localStorage.setItem("user", JSON.stringify(data));
         setUser(data);
       });
   };
+
   return (
     <Container>
-      <Card>
-        <Card.Img variant="top" src={movie.ImageURL} alt={movie.Title} />
+      <Card className="mt-1 mb-1 bg-dark text-white">
+        <div className="text-center">
+          <Card.Img className="h-100 w-25" variant="top" src={movie.ImageURL} alt={movie.Title} />
+        </div>
         <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
+          <Card.Title className="text-center text-uppercase">{movie.Title}</Card.Title>
           <Card.Text>Genre:: {movie.Genre.Name}</Card.Text>
           <Card.Text>Genre Discription:: {movie.Genre.Description}</Card.Text>
           <Card.Text>Director:: {movie.Director.Name}</Card.Text>
@@ -67,9 +68,12 @@ export const MovieView = ({ movies, user, token, setUser }) => {
           <Card.Text>Director DOB:: {movie.Director.Born}</Card.Text>
           <Card.Text>Description:: {movie.Description}</Card.Text>
         </Card.Body>
-        {!isFavourite ? (
-          <Button onClick={addToFavourite}>Add to FavouriteList</Button>
-        ) : (<Button onClick={removeFavourite}>Remove from FavouriteList</Button>)}
+
+        {!isFavorite ? (
+          <Button onClick={addToFavorite}>Add to Favourite List</Button>
+        ) : (
+            <Button onClick={removeFavorite}>Remove from Favourite List</Button>
+          )}
 
         <br />
 
@@ -78,6 +82,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         </Link>
       </Card>
     </Container>
+
   );
 };
 
