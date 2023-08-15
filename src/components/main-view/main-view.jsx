@@ -11,15 +11,13 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
 export const MainView = () => {
-  //const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedUser = localStorage.getItem("user");
+  const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
 
   const onLogout = () => {
-    console.log('This is onlogout code');
     setUser(null);
     setToken(null);
     localStorage.clear();
@@ -63,7 +61,9 @@ export const MainView = () => {
     <BrowserRouter>
       <NavigationBar
         user={user}
-        onLoggedOut={onLogout}
+        onLoggedOut={() => {
+          setUser(null);
+        }}
       />
       <Row className="justify-content-md-center">
         <Routes>
@@ -113,7 +113,7 @@ export const MainView = () => {
                         token={token}
                         movies={movies}
                         setUser={setUser}
-                        onLogout={onLogout}
+                        onLoggedOut={onLogout}
                       />
                     </Col>
                   )}
