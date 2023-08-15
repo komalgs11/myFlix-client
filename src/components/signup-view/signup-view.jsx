@@ -39,11 +39,11 @@ export const SignupView = () => {
       <Row>
         <Col>
           <CardGroup>
-            <Card>
-              <Card.Body>
-                <Card.Title>Please Register</Card.Title>
+            <Card style={{ marginTop: 100, marginBottom: 50 }}>
+              <Card.Body >
+                <Card.Title className=" text-center text-capitalize" >Register Account</Card.Title>
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group controlId="formUsername">
+                  <Form.Group style={{ marginTop: 10, marginBottom: 10 }} controlId="formUsername">
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
@@ -54,7 +54,7 @@ export const SignupView = () => {
                       placeholder="Enter Your Name"
                     />
                   </Form.Group>
-                  <Form.Group controlId="formPassword">
+                  <Form.Group style={{ marginTop: 10, marginBottom: 10 }} controlId="formPassword">
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
                       type="password"
@@ -64,7 +64,7 @@ export const SignupView = () => {
                       placeholder="Enter Your Password"
                     />
                   </Form.Group>
-                  <Form.Group controlId="formEmail">
+                  <Form.Group style={{ marginTop: 10, marginBottom: 10 }} controlId="formEmail">
                     <Form.Label>Email:</Form.Label>
                     <Form.Control
                       type="email"
@@ -74,7 +74,7 @@ export const SignupView = () => {
                       placeholder="Enter Your Email"
                     />
                   </Form.Group>
-                  <Form.Group controlId="formBirthDate">
+                  <Form.Group style={{ marginTop: 10, marginBottom: 10 }} controlId="formBirthDate">
                     <Form.Label>Birthdate:</Form.Label>
                     <Form.Control
                       type="date"
@@ -84,8 +84,7 @@ export const SignupView = () => {
                       placeholder="Enter Your Birthdate"
                     />
                   </Form.Group>
-                  <br />
-                  <Button variant="primary" type="submit">Submit</Button>
+                  <Button style={{ marginTop: 20, marginBottom: 20 }} variant="primary" type="submit">Submit</Button>
                 </Form>
               </Card.Body>
             </Card>
