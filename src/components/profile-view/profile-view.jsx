@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react";
 import { Button, Card, Col, Row, Modal, Form, CardGroup } from "react-bootstrap";
-import { MovieCard } from "../movie-card/movie-card.jsx";
+import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
+export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
   const [username, setUsername] = useState(user.Username);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(user.Email);
   const [birthdate, setBirthDate] = useState(user.BirthDate);
   const [showModal, setShowModal] = useState(false);
-  const favouriteMovies = movies.filter((movie) => {
-    return user && user.favouriteMovies && user.favouriteMovies.includes(movie._id);
+
+  const favoriteMovies = movies.filter((movie) => {
+    return user.favoriteMovies.includes(movie._id)
   });
+
+  console.log(user.Username)
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  //function to handle user update
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -31,6 +35,7 @@ export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
       },
+      body: JSON.stringify(data)
     }).then((response) => {
       if (response.ok) {
         return response.json()
@@ -47,12 +52,11 @@ export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
     fetch(`https://mymoviesflix-415489b92353.herokuapp.com/users/${user.Username}`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
       },
     }).then((response) => {
       if (response.ok) {
-        onLogout();
+        onLoggedOut();
       } else {
         alert("something went wrong.")
       }
@@ -61,11 +65,11 @@ export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
 
   return (<>
     <Row>
-      <Col>
-        <Card>
+      <Col xs={12} sm={4} >
+        <Card style={{ marginTop: 30, marginBottom: 20 }}>
           <Card.Body>
-            <Card.Title>My Profile</Card.Title>
-            <Card.Text>
+            <Card.Title className="text-capitalize text-decoration-underline">My Profile</Card.Title>
+            <Card.Text >
               Username: {user.Username} <br />
                 Email: {user.Email} <br />
             </Card.Text>
@@ -74,11 +78,11 @@ export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
       </Col>
     </Row>
     <Row>
-      <Col>
+      <Col xs={12} sm={8} >
         <CardGroup>
-          <Card>
+          <Card style={{ marginTop: 20, marginBottom: 10 }}>
             <Card.Body>
-              <Card.Title>upadet info</Card.Title>
+              <Card.Title className="text-capitalize text-decoration-underline" >Update info</Card.Title>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formUsername">
                   <Form.Label>Username:</Form.Label>
@@ -117,29 +121,28 @@ export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
                     type="date"
                     value={birthdate}
                     onChange={(e) => setBirthDate(e.target.value)}
-                    required
                     placeholder="Enter Your Birthdate"
                   />
                 </Form.Group>
-                <br />
-                <Button variant="primary" type="submit">Submit</Button>
+                <Button style={{ marginTop: 10, marginBottom: 20 }} variant="primary" type="submit">Submit</Button>
               </Form>
             </Card.Body>
           </Card>
         </CardGroup>
       </Col>
     </Row>
-
     <Row>
       <Col>
-        <Card>
+        <Card style={{ marginTop: 10, marginBottom: 20 }}>
           <Card.Body>
-            <Card.Title>Favourite Movies</Card.Title>
-            {favouriteMovies.map((movie) => (
-              <Col className="mb-5" key={movies._id} md={4}>
-                <MovieCard movie={movie}></MovieCard>
-              </Col>
-            ))}
+            <Card.Title className="text-capitalize text-decoration-underline">Favourite Movies:</Card.Title>
+            <div className="d-flex flex-wrap gap-4">
+              {favoriteMovies.map((movie) => (
+                <Col className="mb-4" key={movie._id} md={2}>
+                  <MovieCard movie={movie}></MovieCard>
+                </Col>
+              ))}
+            </div>
           </Card.Body>
         </Card>
       </Col>
@@ -147,9 +150,10 @@ export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
 
 
     <Button variant="primary" onClick={handleShowModal}> Delete Account</Button>
+
     <Modal show={showModal} onHide={handleCloseModal}>
       <Modal.Header closeButton>
-        <Modal.Title >Deregister</Modal.Title>
+        <Modal.Title >Delete Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>Do you want to delete your account?</Modal.Body>
       <Modal.Footer>
