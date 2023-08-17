@@ -8,6 +8,8 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
   const [email, setEmail] = useState(user.Email);
   const [birthdate, setBirthDate] = useState(user.BirthDate);
   const [showModal, setShowModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+
 
   const favoriteMovies = movies.filter((movie) => {
     return user.favoriteMovies.includes(movie._id)
@@ -45,6 +47,7 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
     }).then((data) => {
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
+      setShowUpdateModal(true); // Show the update success modal
     })
   };
 
@@ -66,9 +69,9 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
   return (<>
     <Row>
       <Col xs={12} sm={4} >
-        <Card style={{ marginTop: 30, marginBottom: 20 }}>
+        <Card className="mt-3 mb-3 border-3">
           <Card.Body>
-            <Card.Title className="text-capitalize text-decoration-underline">My Profile</Card.Title>
+            <Card.Title className="text-capitalize fw-semibold">Profile Details</Card.Title>
             <Card.Text >
               Username: {user.Username} <br />
                 Email: {user.Email} <br />
@@ -80,13 +83,13 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
     <Row>
       <Col xs={12} sm={8} >
         <CardGroup>
-          <Card style={{ marginTop: 20, marginBottom: 10 }}>
+          <Card className="mt-3 mb-3 border-3">
             <Card.Body>
-              <Card.Title className="text-capitalize text-decoration-underline" >Update info</Card.Title>
+              <Card.Title className="text-capitalize fw-semibold" >Update-Info</Card.Title>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formUsername">
-                  <Form.Label>Username:</Form.Label>
-                  <Form.Control
+                  <Form.Label >Username:</Form.Label>
+                  <Form.Control className="border-secondary"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -97,7 +100,7 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
                 </Form.Group>
                 <Form.Group controlId="formPassword">
                   <Form.Label>Password:</Form.Label>
-                  <Form.Control
+                  <Form.Control className="border-secondary"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -107,7 +110,7 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
                 </Form.Group>
                 <Form.Group controlId="formEmail">
                   <Form.Label>Email:</Form.Label>
-                  <Form.Control
+                  <Form.Control className="border-secondary"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -117,14 +120,14 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
                 </Form.Group>
                 <Form.Group controlId="formBirthDate">
                   <Form.Label>Birthdate:</Form.Label>
-                  <Form.Control
+                  <Form.Control className="border-secondary"
                     type="date"
                     value={birthdate}
                     onChange={(e) => setBirthDate(e.target.value)}
                     placeholder="Enter Your Birthdate"
                   />
                 </Form.Group>
-                <Button style={{ marginTop: 10, marginBottom: 20 }} variant="primary" type="submit">Submit</Button>
+                <Button className="mt-3 mb-3 btn-dark" variant="primary" type="submit">Submit</Button>
               </Form>
             </Card.Body>
           </Card>
@@ -133,9 +136,9 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
     </Row>
     <Row>
       <Col>
-        <Card style={{ marginTop: 10, marginBottom: 20 }}>
+        <Card className=" mt-3 mb-3 border-3">
           <Card.Body>
-            <Card.Title className="text-capitalize text-decoration-underline">Favourite Movies:</Card.Title>
+            <Card.Title className="text-capitalize fw-semibold">Favourite Movies:</Card.Title>
             <div className="d-flex flex-wrap gap-4">
               {favoriteMovies.map((movie) => (
                 <Col className="mb-4" key={movie._id} md={2}>
@@ -149,7 +152,19 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
     </Row>
 
 
-    <Button variant="primary" onClick={handleShowModal}> Delete Account</Button>
+    <Button className="btn-dark" variant="primary" onClick={handleShowModal}> Delete Account</Button>
+
+    <Modal show={showUpdateModal} onHide={() => setShowUpdateModal(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Update Success</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Your details have been updated successfully!</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setShowUpdateModal(false)}>
+          Close
+          </Button>
+      </Modal.Footer>
+    </Modal>
 
     <Modal show={showModal} onHide={handleCloseModal}>
       <Modal.Header closeButton>
@@ -157,8 +172,8 @@ export const ProfileView = ({ user, token, setUser, movies, onLoggedOut }) => {
       </Modal.Header>
       <Modal.Body>Do you want to delete your account?</Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={handleDeleteUser}>Yes</Button>
-        <Button variant="secondary" onClick={handleCloseModal}>No</Button>
+        <Button className="btn-dark" variant="primary" onClick={handleDeleteUser}>Yes</Button>
+        <Button className="btn-dark" variant="secondary" onClick={handleCloseModal}>No</Button>
       </Modal.Footer>
     </Modal>
   </>
