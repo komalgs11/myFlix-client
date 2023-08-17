@@ -39,13 +39,13 @@ export const SignupView = () => {
       <Row>
         <Col>
           <CardGroup>
-            <Card style={{ marginTop: 100, marginBottom: 50 }}>
+            <Card style={{ marginTop: 100, marginBottom: 50 }} className="bg-light-white fw-medium border-dark">
               <Card.Body >
-                <Card.Title className=" text-center text-capitalize" >Register Account</Card.Title>
+                <Card.Title className=" text-center text-capitalize fw-semibold" >Register</Card.Title>
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group style={{ marginTop: 10, marginBottom: 10 }} controlId="formUsername">
+                  <Form.Group className="mt-3 mb-3" controlId="formUsername">
                     <Form.Label>Username:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="border-dark"
                       type="text"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
@@ -54,9 +54,9 @@ export const SignupView = () => {
                       placeholder="Enter Your Name"
                     />
                   </Form.Group>
-                  <Form.Group style={{ marginTop: 10, marginBottom: 10 }} controlId="formPassword">
+                  <Form.Group className="mt-3 mb-3" controlId="formPassword">
                     <Form.Label>Password:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="border-dark"
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -64,9 +64,9 @@ export const SignupView = () => {
                       placeholder="Enter Your Password"
                     />
                   </Form.Group>
-                  <Form.Group style={{ marginTop: 10, marginBottom: 10 }} controlId="formEmail">
+                  <Form.Group className="mt-3 mb-3" controlId="formEmail">
                     <Form.Label>Email:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="border-dark"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -74,9 +74,9 @@ export const SignupView = () => {
                       placeholder="Enter Your Email"
                     />
                   </Form.Group>
-                  <Form.Group style={{ marginTop: 10, marginBottom: 10 }} controlId="formBirthDate">
+                  <Form.Group className="mt-3 mb-3" controlId="formBirthDate">
                     <Form.Label>Birthdate:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="border-dark"
                       type="date"
                       value={birthdate}
                       onChange={(e) => setBirthDate(e.target.value)}
@@ -84,7 +84,7 @@ export const SignupView = () => {
                       placeholder="Enter Your Birthdate"
                     />
                   </Form.Group>
-                  <Button style={{ marginTop: 20, marginBottom: 20 }} variant="primary" type="submit">Submit</Button>
+                  <Button className="btn-dark" variant="primary" type="submit">Submit</Button>
                 </Form>
               </Card.Body>
             </Card>

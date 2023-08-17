@@ -43,15 +43,15 @@ export const LoginView = ({ onLoggedIn }) => {
       <Row>
         <Col>
           <CardGroup>
-            <Card style={{ marginTop: 100, marginBottom: 50 }}>
+            <Card style={{ marginTop: 100, marginBottom: 100 }} className="bg-light-white fw-medium border-dark">
               <Card.Body>
                 <Card.Title className=" text-center text-capitalize">
                   Welcome to MyFlix
                 </Card.Title>
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group style={{ marginTop: 20, marginBottom: 20 }} controlId="formUsername">
+                  <Form.Group controlId="formUsername" className="mt-3 mb-3">
                     <Form.Label>Username:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="border-dark"
                       type="text"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
@@ -60,9 +60,9 @@ export const LoginView = ({ onLoggedIn }) => {
                       placeholder="Enter Your Name"
                     />
                   </Form.Group>
-                  <Form.Group controlId="formPassword">
+                  <Form.Group controlId="formPassword" className="mt-3 mb-3">
                     <Form.Label>Password:</Form.Label>
-                    <Form.Control
+                    <Form.Control className="border-dark"
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -70,8 +70,7 @@ export const LoginView = ({ onLoggedIn }) => {
                       placeholder="Enter Your Password"
                     />
                   </Form.Group>
-                  <br />
-                  <Button variant="primary" type="submit">Submit</Button>
+                  <Button className="btn-dark" variant="primary" type="submit">Submit</Button>
                 </Form>
               </Card.Body>
             </Card>

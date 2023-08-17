@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Card className="h-100">
+    <Card style={{ marginTop: 20, marginBottom: 20 }} className="h-100">
       <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
         <Card.Img variant="top" src={movie.ImageURL} />
       </Link>
       <Card.Body>
-        <Card.Title className='fw-bold'>{movie.Title}</Card.Title>
+        <Card.Title className='fw-medium'>{movie.Title}</Card.Title>
       </Card.Body>
     </Card >
   );
