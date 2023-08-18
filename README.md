@@ -3,10 +3,10 @@ Using React, build the client-side for an app called myFlix based on its
 existing server-side code (REST API and database).
 
 # Technologies used
-1. Bootstrap
-2. React
-3. React-Router
-4. Parcel
+- Bootstrap
+- React
+- React-Router
+- Parcel
 
 # Url Of Project
 - Link to project: https://movies-myflix.netlify.app/
