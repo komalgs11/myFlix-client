@@ -73,8 +73,8 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
   --bs-body-color-rgb: 33, 37, 41;
-  --bs-body-bg: #d4d1d1c5;
-  --bs-body-bg-rgb: 212, 209, 209;
+  --bs-body-bg: #d1cccc;
+  --bs-body-bg-rgb: 209, 204, 204;
   --bs-emphasis-color: #000;
   --bs-emphasis-color-rgb: 0, 0, 0;
   --bs-secondary-color: #212529bf;
@@ -2623,11 +2623,11 @@ textarea.form-control-lg {
 }
 
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #d4d1d1c5, 0 0 0 .25rem #0d6efd40;
+  box-shadow: 0 0 0 1px #d1cccc, 0 0 0 .25rem #0d6efd40;
 }
 
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #d4d1d1c5, 0 0 0 .25rem #0d6efd40;
+  box-shadow: 0 0 0 1px #d1cccc, 0 0 0 .25rem #0d6efd40;
 }
 
 .form-range::-moz-focus-outer {
