@@ -2,8 +2,16 @@
 Using React, build the client-side for an app called myFlix based on its
 existing server-side code (REST API and database).
 
-# key Features:
-- Returns ALL movies to the user (each movie item with an image, title, and description)
-- Ability to log out
-- Filtering the list of movies with a “search” feature
+# Technologies used
+-Bootstrap
+-React
+-React-Router
+-Parcel
+
+# Url Of Project
+Link to project: https://movies-myflix.netlify.app/
+Link to server-side repo: https://github.com/komalgs11/myFlix_API
+Link to client-side repo: https://github.com/komalgs11/myFlix-client
+
+
  
