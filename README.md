@@ -9,9 +9,9 @@ existing server-side code (REST API and database).
 -Parcel
 
 # Url Of Project
-Link to project: https://movies-myflix.netlify.app/
-Link to server-side repo: https://github.com/komalgs11/myFlix_API
-Link to client-side repo: https://github.com/komalgs11/myFlix-client
+-Link to project: https://movies-myflix.netlify.app/
+-Link to server-side repo: https://github.com/komalgs11/myFlix_API
+-Link to client-side repo: https://github.com/komalgs11/myFlix-client
 
 
  
