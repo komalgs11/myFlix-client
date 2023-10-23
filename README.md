@@ -7,6 +7,8 @@ existing server-side code (REST API and database).
 - React
 - React-Router
 - Parcel
+- Node.js
+- Express
 
 # Url Of Project
 - Link to project: https://movies-myflix.netlify.app/
